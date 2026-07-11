@@ -1,5 +1,5 @@
 from block_markdown import markdown_to_html_node
-from gen_content import generate_page
+from gen_content import generate_page, generate_pages_recursive
 from textnode import TextNode, TextType
 from copy_static import copy_files_recursive
 import os
@@ -19,11 +19,7 @@ def main():
     copy_files_recursive(dir_path_static, dir_path_public)
 
     print("Generating page...")
-    generate_page(
-        os.path.join(dir_path_content, "index.md"),
-        template_path,
-        os.path.join(dir_path_public, "index.html"),
-    )
+    generate_pages_recursive(dir_path_content, template_path, dir_path_public)
 
 
 if __name__ == "__main__":
